@@ -3,6 +3,7 @@
 #include <WiFi.h>
 
 #define LED_PIN 13
+#define LED_ONBOARD 2
 
 const char* ssid = "****";
 const char* password = "****";
@@ -13,9 +14,10 @@ void setup() {
     Serial.begin(115200);
     Serial.setDebugOutput(true);
     pinMode(LED_PIN, OUTPUT);
+    pinMode(LED_ONBOARD, OUTPUT);
 
     WiFi.begin(ssid, password);
-    Serial.println("Connecting to WiFi");
+    Serial.print("Connecting to WiFi");
     digitalWrite(LED_PIN, HIGH);
     while (WiFi.status() != WL_CONNECTED) {
         delay(100);
