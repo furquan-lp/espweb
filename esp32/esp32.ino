@@ -26,6 +26,7 @@ void setup() {
             digitalWrite(LED_PIN, LOW);
             digitalWrite(LED_ONBOARD, HIGH);
             delay(1000);
+            ESP.deepSleep(0);
             return;
         }
         delay(100);
