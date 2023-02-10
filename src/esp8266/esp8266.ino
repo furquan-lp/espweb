@@ -1,13 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
-
-const char* ssid = "****";
-const char* password = "****";
-
-uint32_t count = 0;
-
-AsyncWebServer server(80);
+#include <espweb.h>
+#include <espweb_common.h>
 
 void setup() {
     Serial.begin(115200);
@@ -33,10 +28,8 @@ void setup() {
     digitalWrite(LED_BUILTIN, HIGH);
     Serial.printf("\nConnected at %s\n", WiFi.localIP().toString().c_str());
 
-    server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
-        request->send(200, "text/plain", "Hello World!");
-    });
+    server.on("/", HTTP_GET, handle_webserver_root);
     server.begin();
 }
 
-void loop() {}
+void loop() { delay(100); }
