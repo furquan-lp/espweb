@@ -22,7 +22,7 @@ void setup() {
             digitalWrite(LED_PIN, LOW);
             digitalWrite(LED_ONBOARD, HIGH);
             delay(1000);
-            ESP.deepSleep(0);
+            esp_deep_sleep_start();
             return;
         }
         delay(100);
