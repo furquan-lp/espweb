@@ -2,11 +2,7 @@
 #include <ESPAsyncWebServer.h>
 #include <WiFi.h>
 
-#define LED_PIN 13
-#define LED_ONBOARD 2
-
-const char* ssid = "****";
-const char* password = "****";
+#include "esp32web.h"
 
 AsyncWebServer server(80);
 
@@ -36,10 +32,16 @@ void setup() {
     digitalWrite(LED_PIN, LOW);
     Serial.printf("\nConnected at %s\n", WiFi.localIP().toString().c_str());
 
-    server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
-        request->send(200, "text/plain", "Hello World!");
-    });
+    server.on("/", HTTP_GET, handle_webserver_root);
     server.begin();
 }
 
-void loop() {}
+void loop() { delay(100); }
+
+void handle_webserver_root(AsyncWebServerRequest* request) {
+    uint32_t seconds = millis() / 1000;
+    const char* format_str = "Hello World!\nSeconds since boot: %d\n";
+    char server_str[sizeof(format_str) + 64];
+    sprintf(server_str, format_str, seconds);
+    request->send(200, "text/plain", server_str);
+}
