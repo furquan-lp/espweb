@@ -39,6 +39,10 @@ void handle_webserver_style(AsyncWebServerRequest* request) {
     request->send(SPIFFS, "/style.css", "text/css");
 }
 
+void handle_webserver_javascript(AsyncWebServerRequest* request) {
+    request->send(SPIFFS, "/app.js", "text/javascript");
+}
+
 void handle_webserver_json(AsyncWebServerRequest* request) {
     request->send(200, "application/json", server_json_data);
 }
