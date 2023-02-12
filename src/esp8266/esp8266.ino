@@ -2,8 +2,15 @@
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <FS.h>
+
+#ifndef EW_ESP8266
+#define EW_ESP8266
+#endif
+
 #include <espweb.h>
 #include <espweb_common.h>
+
+String ip_address = "NULL";
 
 void setup() {
     Serial.begin(115200);
@@ -28,6 +35,7 @@ void setup() {
     }
     digitalWrite(LED_BUILTIN, HIGH);
     Serial.printf("\nConnected at %s\n", WiFi.localIP().toString().c_str());
+    ip_address = WiFi.localIP().toString();
 
     if (!SPIFFS.begin()) {
         Serial.println("An Error has occurred while mounting SPIFFS");
@@ -35,7 +43,11 @@ void setup() {
 
     server.on("/", HTTP_GET, handle_webserver_root);
     server.on("/style.css", HTTP_GET, handle_webserver_style);
+    server.on("/data", HTTP_GET, handle_webserver_json);
     server.begin();
 }
 
-void loop() { delay(100); }
+void loop() {
+    update_server_json_data(ip_address.c_str(), ESP.getFreeHeap());
+    delay(2000);
+}
