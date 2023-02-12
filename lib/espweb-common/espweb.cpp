@@ -1,21 +1,18 @@
 #include "espweb.h"
 
-uint32_t uptime_seconds() { return millis() / 1000; }
-
-const char* server_json_template =
+const char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\"}";
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
                       128];
 
-const char* get_uptime() {
+char* get_uptime() {
     uint32_t seconds = millis() / 1000;
     uint32_t hours = seconds / (60 * 60);
     uint32_t minutes = (seconds - (hours * 60 * 60)) / 60;
     seconds -= minutes * 60 + hours * (60 * 60);
-    char buf[20];
-    snprintf(buf, (sizeof(buf) / sizeof(buf[0])), "%d:%d:%d", hours, minutes,
-             seconds);
+    char* buf = (char*)malloc(sizeof(*buf) * 20);
+    snprintf(buf, 20, "%d:%d:%d", hours, minutes, seconds);
     return buf;
 }
 
@@ -33,10 +30,16 @@ void handle_webserver_style(AsyncWebServerRequest* request) {
     request->send(SPIFFS, "/style.css", "text/css");
 }
 
+void handle_webserver_json(AsyncWebServerRequest* request) {
+    request->send(200, "application/json", server_json_data);
+}
+
 void update_server_json_data(const char* ipaddr, uint32_t free_heap) {
+    char* up = get_uptime();
     snprintf(server_json_data,
              sizeof(server_json_data) / sizeof(server_json_data[0]),
-             server_json_template, get_uptime(), ipaddr, free_heap);
+             server_json_template, up, ipaddr, free_heap);
+    free(up);
 }
 
 /**
