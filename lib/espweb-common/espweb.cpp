@@ -20,6 +20,10 @@ void handle_webserver_root(AsyncWebServerRequest* request) {
     request->send(SPIFFS, "/index.html", String(), false, processor);
 }
 
+void handle_webserver_style(AsyncWebServerRequest* request) {
+    request->send(SPIFFS, "/style.css", "text/css");
+}
+
 /**
  * Blinks the LED on (LOW or HIGH depending on whether invert is true) for 250ms
  * and off for 250ms.
