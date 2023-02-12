@@ -4,14 +4,24 @@ html {
 
 body {
     background-color: #e7f6f2;
-    margin: 10px auto;
+    margin: 5px auto;
     padding: 10px;
     width: 768px;
     height: 100%;
     border-radius: 0.5rem;
+    font-family: sans-serif;
 }
 
-h1 {
+h1,
+h2 {
     color: #2c3333;
-    font-family: sans-serif;
+}
+
+hr {
+    margin: -5px 0;
+    color: #a5c9ca
+}
+
+.info {
+    color: #395b64;
 }
