@@ -15,7 +15,7 @@ void setup() {
     digitalWrite(ESP32_LED_PIN, HIGH);
     uint8_t wifi_attempt = 0;
     while (WiFi.status() != WL_CONNECTED) {
-        if (wifi_attempt >= 100) {
+        if (wifi_attempt >= 20) {
             Serial.println("Couldn't connect to WiFi. Aborting...");
             digitalWrite(ESP32_LED_PIN, LOW);
             digitalWrite(ESP32_LED_ONBOARD, HIGH);
@@ -23,7 +23,7 @@ void setup() {
             esp_deep_sleep_start();
             return;
         }
-        delay(100);
+        blink_led(ESP32_LED_ONBOARD, false);
         Serial.print(".");
         wifi_attempt++;
     }
