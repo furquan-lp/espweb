@@ -1,6 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <FS.h>
 #include <espweb.h>
 #include <espweb_common.h>
 
@@ -27,6 +28,10 @@ void setup() {
     }
     digitalWrite(LED_BUILTIN, HIGH);
     Serial.printf("\nConnected at %s\n", WiFi.localIP().toString().c_str());
+
+    if (!SPIFFS.begin()) {
+        Serial.println("An Error has occurred while mounting SPIFFS");
+    }
 
     server.on("/", HTTP_GET, handle_webserver_root);
     server.begin();
