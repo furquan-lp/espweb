@@ -3,11 +3,13 @@
 #ifdef EW_ESP32
 const char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
-    "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File System)\"}";
+    "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
+    "System)\",\"version\":\"0.8.0\"}";
 #else
 const char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
-    "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File System)\"}";
+    "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
+    "System)\",\"version\":\"0.8.0\"}";
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
                       128];
