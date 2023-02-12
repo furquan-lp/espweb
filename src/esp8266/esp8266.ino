@@ -14,14 +14,14 @@ void setup() {
     digitalWrite(LED_BUILTIN, LOW);
     uint8_t wifi_attempt = 0;
     while (WiFi.status() != WL_CONNECTED) {
-        if (wifi_attempt >= 100) {
+        if (wifi_attempt >= 20) {
             Serial.println("Couldn't connect to WiFi. Aborting...");
             digitalWrite(LED_BUILTIN, HIGH);
             delay(1000);
             ESP.deepSleep(0);
             return;
         }
-        delay(100);
+        blink_led(LED_BUILTIN, true);
         Serial.print(".");
         wifi_attempt++;
     }
