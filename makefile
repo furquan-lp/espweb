@@ -31,8 +31,11 @@ upload-esp32:
 	${ARDUINO_CLI} upload -v -t -b ${BOARD_ESP32} --port ${PORT_ESP32} ${SOURCE_ESP32}/esp32.ino
 
 upload-nodemcu:
-	${SPIFFS_TOOL} ${SPIFFS_TOOL_FLAGS} ${SOURCE_SPIFFS} ${BUILD_SPIFFS}
-	${ESPTOOL} --chip esp8266 --port ${PORT_ESP8266} --baud 115200 --before default_reset --after hard_reset write_flash 0x0 ${BUILD_ESP8266} ${SPIFFS_BEGIN_ESP8266} ${BUILD_SPIFFS}
+	${ESPTOOL} --chip esp8266 --port ${PORT_ESP8266} --baud 115200 --before default_reset --after hard_reset write_flash 0x0 ${BUILD_ESP8266}
 #	${ARDUINO_CLI} upload -v -t -b ${BOARD_ESP8266} --port ${PORT_ESP8266} ${SOURCE_ESP8266}/esp8266.ino
+
+upload-nodemcu-spiffs:
+	${SPIFFS_TOOL} ${SPIFFS_TOOL_FLAGS} ${SOURCE_SPIFFS} ${BUILD_SPIFFS}
+	${ESPTOOL} --chip esp8266 --port ${PORT_ESP8266} --baud 115200 --before default_reset --after hard_reset write_flash ${SPIFFS_BEGIN_ESP8266} ${BUILD_SPIFFS}
 
 upload: upload-esp32 upload-nodemcu
