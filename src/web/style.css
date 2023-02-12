@@ -25,3 +25,11 @@ hr {
 .info {
     color: #395b64;
 }
+
+img {
+    display: flex;
+    justify-self: center;
+    margin: 10px auto;
+    width: 50%;
+    box-shadow: 2px 4px 10px #a5c9ca;
+}
