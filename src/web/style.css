@@ -10,10 +10,6 @@ body {
     height: 100%;
     border-radius: 0.5rem;
     font-family: sans-serif;
-}
-
-h1,
-h2 {
     color: #2c3333;
 }
 
@@ -24,6 +20,7 @@ hr {
 
 .info {
     color: #395b64;
+    font-family: 'Noto Mono', monospace;
 }
 
 img {
