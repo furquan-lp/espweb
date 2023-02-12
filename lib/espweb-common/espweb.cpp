@@ -43,6 +43,10 @@ void handle_webserver_javascript(AsyncWebServerRequest* request) {
     request->send(SPIFFS, "/app.js", "text/javascript");
 }
 
+void handle_webserver_images(AsyncWebServerRequest* request) {
+    request->send(SPIFFS, "/esp8266.jpg", "image/jpeg");
+}
+
 void handle_webserver_json(AsyncWebServerRequest* request) {
     request->send(200, "application/json", server_json_data);
 }
