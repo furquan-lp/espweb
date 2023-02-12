@@ -45,6 +45,7 @@ void setup() {
     server.on("/style.css", HTTP_GET, handle_webserver_style);
     server.on("/data", HTTP_GET, handle_webserver_json);
     server.on("/app.js", HTTP_GET, handle_webserver_javascript);
+    server.on("/esp8266.jpg", HTTP_GET, handle_webserver_images);
 
     DefaultHeaders::Instance().addHeader("Access-Control-Allow-Origin", "*");
     server.begin();
