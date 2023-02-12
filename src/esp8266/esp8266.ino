@@ -34,6 +34,7 @@ void setup() {
     }
 
     server.on("/", HTTP_GET, handle_webserver_root);
+    server.on("/style.css", HTTP_GET, handle_webserver_style);
     server.begin();
 }
 
