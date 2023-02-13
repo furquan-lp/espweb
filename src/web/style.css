@@ -20,6 +20,19 @@ hr {
   color: #f1faee;
 }
 
+a {
+  text-decoration: none;
+  color: #457b9d;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #219ebc;
+}
+
 .top-bar {
   display: flex;
   align-items: center;
@@ -44,17 +57,7 @@ hr {
 }
 
 .top-bar-right a {
-  text-decoration: none;
-  color: #457b9d;
   margin-right: 1rem;
-}
-
-.top-bar-right a:hover {
-  text-decoration: underline;
-}
-
-.top-bar-right a:visited {
-  color: #219ebc;
 }
 
 .top-bar-logo {
