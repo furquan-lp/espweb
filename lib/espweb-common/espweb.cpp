@@ -17,9 +17,9 @@ bool led_toggled = false;
 // TODO: This may introduce a bug if ESP32_LED_ONBOARD is not defined as
 // espweb.h may be imported before it is defined
 #if defined(ESP32)
-uint8_t led_pin = ESP32_LED_ONBOARD;
+uint8_t server_led_pin = ESP32_LED_ONBOARD;
 #else
-uint8_t led_pin = LED_BUILTIN;
+uint8_t server_led_pin = LED_BUILTIN;
 #endif
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
@@ -58,9 +58,9 @@ void handle_webserver_images(AsyncWebServerRequest* request) {
 }
 
 void handle_webserver_json(AsyncWebServerRequest* request) {
-    toggle_led(led_pin);
+    toggle_led(server_led_pin);
     request->send(200, "application/json", server_json_data);
-    toggle_led(led_pin);
+    toggle_led(server_led_pin);
 }
 
 void update_server_json_data(const char* ipaddr, uint32_t free_heap) {
