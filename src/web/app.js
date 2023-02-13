@@ -14,15 +14,15 @@ const colorsLight = {
 };
 
 const colorsDark = {
-  mainBg: '#f1faee',
-  mainShadow: '#f1faee',
-  mainText: '#1d3557',
+  mainBg: '#1d3557',
+  mainShadow: '#1d3557',
+  mainText: '#f1faee',
   mainLink: '#457b9d',
   mainRed: '#e63946',
   mainLight: '#a8dadc',
   newShadow: '#e5e5e5',
   newBlue: '#219ebc',
-  htmlBg: 'white'
+  htmlBg: '#023047'
 };
 
 let jsonObject = {};
@@ -51,4 +51,28 @@ const updateData = (data) => {
 }
 
 const nightClick = () => {
+  const root = document.querySelector(':root');
+  if (!nightMode) {
+    root.style.setProperty('--html-bg', colorsDark.htmlBg);
+    root.style.setProperty('--main-bg', colorsDark.mainBg);
+    root.style.setProperty('--main-shadow', colorsDark.mainShadow);
+    root.style.setProperty('--main-text', colorsDark.mainText);
+    root.style.setProperty('--main-link', colorsDark.mainLink);
+    root.style.setProperty('--main-red', colorsDark.mainRed);
+    root.style.setProperty('--main-light', colorsDark.mainLight);
+    root.style.setProperty('--new-shadow', colorsDark.newShadow);
+    root.style.setProperty('--new-blue', colorsDark.newBlue);
+    nightMode = true;
+  } else {
+    root.style.setProperty('--html-bg', colorsLight.htmlBg);
+    root.style.setProperty('--main-bg', colorsLight.mainBg);
+    root.style.setProperty('--main-shadow', colorsLight.mainShadow);
+    root.style.setProperty('--main-text', colorsLight.mainText);
+    root.style.setProperty('--main-link', colorsLight.mainLink);
+    root.style.setProperty('--main-red', colorsLight.mainRed);
+    root.style.setProperty('--main-light', colorsLight.mainLight);
+    root.style.setProperty('--new-shadow', colorsLight.newShadow);
+    root.style.setProperty('--new-blue', colorsLight.newBlue);
+    nightMode = false;
+  }
 }
