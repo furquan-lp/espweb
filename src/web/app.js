@@ -17,11 +17,11 @@ const colorsDark = {
   mainBg: '#1d3557',
   mainShadow: '#1d3557',
   mainText: '#f1faee',
-  mainLink: '#457b9d',
-  mainRed: '#e63946',
-  mainLight: '#a8dadc',
-  newShadow: '#e5e5e5',
-  newBlue: '#219ebc',
+  mainLink: '#e63946',
+  mainRed: '#ffb703',
+  mainLight: '#ffb703',
+  newShadow: '#14213d',
+  newBlue: '#fb8500',
   htmlBg: '#023047'
 };
 
