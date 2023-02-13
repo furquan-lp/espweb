@@ -87,6 +87,7 @@ a:visited {
 .night-button {
   display: flex;
   align-items: center;
+  color: #457b9d;
   background-color: white;
   border-color: #f1faee;
   border-style: solid;
@@ -94,8 +95,10 @@ a:visited {
   border-radius: 0.5rem;
   padding: 0.2rem;
   box-shadow: 1px 2px 1px #e5e5e5;
+  transition-duration: 300ms;
 }
 
-.moon-icon {
-  color: #457b9d;
+.night-button:hover {
+  border-color: #a8dadc;
+  color: #219ebc;
 }
