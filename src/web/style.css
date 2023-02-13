@@ -5,19 +5,19 @@ html {
 }
 
 body {
-  background-color: #e7f6f2;
+  background-color: #f1faee;
   margin: 5px auto;
   padding: 5px 10px;
   width: 768px;
   height: 100%;
   border-radius: 0.5rem;
   font-family: sans-serif;
-  color: #2c3333;
+  color: #1d3557;
 }
 
 hr {
   margin: -5px 0;
-  color: #a5c9ca
+  color: #f1faee;
 }
 
 .top-bar {
@@ -25,7 +25,7 @@ hr {
   background-color: white;
   padding: 1rem 1rem;
   border-radius: 0.3rem;
-  box-shadow: 1px 2px 5px #a5c9ca;
+  box-shadow: 1px 2px 5px #f1faee;
 }
 
 .top-bar-logo {
@@ -34,7 +34,7 @@ hr {
 }
 
 .info {
-  color: #395b64;
+  color: #e63946;
   font-family: 'Noto Mono', monospace;
 }
 
@@ -43,5 +43,5 @@ img {
   justify-self: center;
   margin: 10px auto;
   width: 50%;
-  box-shadow: 2px 4px 10px #a5c9ca;
+  box-shadow: 2px 4px 10px #f1faee;
 }
