@@ -2,40 +2,41 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <link href="style.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <title>ESPWeb | An entire website on a microcontroller</title>
+  <meta charset="utf-8">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <title>ESPWeb | An entire website on a microcontroller</title>
 </head>
 
 <body>
-    <div class="top-bar">
-        <span class="top-bar-left"><span class="top-bar-logo">ESPWeb</span>&nbsp;- Home</span>
-        <span class="top-bar-right">
-            <a href="https://example.com/">About</a>
-            <span class="night-button" onclick="nightClick()"><span data-feather="moon" /></span>
-        </span>
-    </div>
-    <h1>Welcome!</h1>
-    This website is hosted entirely on an ESP8266 microcontroller (NodeMCU board) with just 4 megabytes of flash and
-    128KB of SRAM!
-    <div class="esp-img">
-        <img src="esp8266.jpg" />
-        Yup, this entire webpage is being served by this board, including this image!
-    </div>
-    <p>
-        Don't believe it? Learn more about <a href="https://example.com">how it works</a> or you can <a
-            href="https://github.com/furquan-lp/espweb">check the source code</a> yourself.</p>
-    <h2>Server Info:</h2>
-    <hr />
-    <p>This server has been running since <span class="info" id="uptime">00:00:00</span>.</p>
-    <p>On local IP <span class="info" id="ip">unknown</span>.</p>
-    <p>Free heap space: <span class="info" id="heap">unknown</span></p>
-    <p>CPU frequency: <span class="info" id="cpu">80MHz</span> (nominal)</p>
-    <p>Flash storage and partitioning:
-    <div id="flash">4MB</div>
-    </p>
+  <div class="top-bar">
+    <span class="top-bar-left"><span class="top-bar-logo">ESPWeb</span>&nbsp;- Home</span>
+    <span class="top-bar-right">
+      <a href="https://example.com/">About</a>
+      <span class="night-button" onclick="nightClick()"><span data-feather="moon" /></span>
+    </span>
+  </div>
+  <h1>Welcome!</h1>
+  This website is hosted entirely on an ESP8266 microcontroller (NodeMCU board) with just 4 megabytes of flash and
+  128KB of SRAM!
+  <div class="esp-img">
+    <img src="esp8266.jpg" />
+    Yup, this entire webpage is being served by this board, including this image!
+  </div>
+  <p>
+    Don't believe it? Learn more about <a href="https://example.com">how it works</a> or you can <a
+      href="https://github.com/furquan-lp/espweb">check the source code</a> yourself.</p>
+  <h2>Server Info:</h2>
+  <hr />
+  <p>This server has been running since <span class="info" id="uptime">00:00:00</span>.</p>
+  <p>On local IP <span class="info" id="ip">unknown</span>.</p>
+  <p>Free heap space: <span class="info" id="heap">unknown</span></p>
+  <p>CPU frequency: <span class="info" id="cpu">80MHz</span> (nominal)</p>
+  <p>Flash storage and partitioning:
+  <div id="flash">4MB</div>
+  </p>
+
 </body>
 <script src="app.js"></script>
 
