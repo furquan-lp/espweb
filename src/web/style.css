@@ -80,6 +80,16 @@ a:visited {
   user-select: none;
 }
 
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+  margin: 1.5rem -8px -5px -8px;
+  background-color: var(--html-bg);
+  box-shadow: 1px 2px 5px var(--new-shadow);
+}
+
 .info {
   color: var(--main-red);
   font-family: 'Noto Mono', monospace;
