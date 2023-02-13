@@ -1,6 +1,6 @@
 #include "espweb.h"
 
-#ifdef EW_ESP32
+#if defined(ESP32)
 const char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
     "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
@@ -10,10 +10,10 @@ const char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
     "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
     "System)\",\"version\":\"0.8.0\"}";
+#endif
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
                       128];
-#endif
 
 char* get_uptime() {
     uint32_t seconds = millis() / 1000;
