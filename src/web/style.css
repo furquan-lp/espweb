@@ -18,6 +18,17 @@ hr {
   color: #a5c9ca
 }
 
+.top-bar {
+  display: flex;
+  background-color: white;
+  padding: 0.5rem 1rem;
+}
+
+.top-bar-logo {
+  font-size: 2rem;
+  font-family: monospace;
+}
+
 .info {
   color: #395b64;
   font-family: 'Noto Mono', monospace;
