@@ -43,6 +43,20 @@ hr {
   align-items: center;
 }
 
+.top-bar-right a {
+  text-decoration: none;
+  color: #457b9d;
+  margin-right: 1rem;
+}
+
+.top-bar-right a:hover {
+  text-decoration: underline;
+}
+
+.top-bar-right a:visited {
+  color: #219ebc;
+}
+
 .top-bar-logo {
   font-size: 2rem;
   font-family: 'Press Start 2P', monospace;
