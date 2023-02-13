@@ -2,11 +2,6 @@
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <FS.h>
-
-#ifndef EW_ESP8266
-#define EW_ESP8266
-#endif
-
 #include <espweb.h>
 #include <espweb_common.h>
 
