@@ -1,7 +1,32 @@
 console.log('begin');
 feather.replace();
 
+const colorsLight = {
+  mainBg: '#f1faee',
+  mainShadow: '#f1faee',
+  mainText: '#1d3557',
+  mainLink: '#457b9d',
+  mainRed: '#e63946',
+  mainLight: '#a8dadc',
+  newShadow: '#e5e5e5',
+  newBlue: '#219ebc',
+  htmlBg: 'white'
+};
+
+const colorsDark = {
+  mainBg: '#f1faee',
+  mainShadow: '#f1faee',
+  mainText: '#1d3557',
+  mainLink: '#457b9d',
+  mainRed: '#e63946',
+  mainLight: '#a8dadc',
+  newShadow: '#e5e5e5',
+  newBlue: '#219ebc',
+  htmlBg: 'white'
+};
+
 let jsonObject = {};
+let nightMode = false;
 
 setInterval(() => {
   getAll();
@@ -26,5 +51,4 @@ const updateData = (data) => {
 }
 
 const nightClick = () => {
-  console.log('hello')
 }
