@@ -10,5 +10,6 @@ void handle_webserver_images(AsyncWebServerRequest* request);
 void handle_webserver_json(AsyncWebServerRequest* request);
 void update_server_json_data(const char* ipaddr, uint32_t free_heap);
 void blink_led(uint8_t led_pin);
+void toggle_led(uint8_t led_pin);
 
 #endif

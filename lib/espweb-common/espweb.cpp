@@ -13,6 +13,14 @@ const PROGMEM char server_json_template[] =
     "System)\",\"version\":\"0.8.0\"}";
 bool invert_led = true;
 #endif
+bool led_toggled = false;
+// TODO: This may introduce a bug if ESP32_LED_ONBOARD is not defined as
+// espweb.h may be imported before it is defined
+#if defined(ESP32)
+uint8_t led_pin = ESP32_LED_ONBOARD;
+#else
+uint8_t led_pin = LED_BUILTIN;
+#endif
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
                       128];
@@ -50,7 +58,9 @@ void handle_webserver_images(AsyncWebServerRequest* request) {
 }
 
 void handle_webserver_json(AsyncWebServerRequest* request) {
+    toggle_led(led_pin);
     request->send(200, "application/json", server_json_data);
+    toggle_led(led_pin);
 }
 
 void update_server_json_data(const char* ipaddr, uint32_t free_heap) {
@@ -71,4 +81,18 @@ void blink_led(uint8_t led_pin) {
     delay(250);
     digitalWrite(led_pin, !on);
     delay(250);
+}
+
+/**
+ * Toggles the LED on or off
+ */
+void toggle_led(uint8_t led_pin) {
+    uint8_t on = invert_led ? LOW : HIGH;
+    if (led_toggled) {
+        digitalWrite(led_pin, !on);
+        led_toggled = false;
+    } else {
+        digitalWrite(led_pin, on);
+        led_toggled = true;
+    }
 }
