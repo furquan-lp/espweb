@@ -1,4 +1,5 @@
 console.log('begin');
+feather.replace();
 
 let jsonObject = {};
 
@@ -8,7 +9,7 @@ setInterval(() => {
 }, 2000);
 
 const getAll = () => {
-  axios.get('http://192.168.0.8/data')
+  axios.get('data')
     .then(function (response) {
       console.log(response.data);
       jsonObject = response.data;
