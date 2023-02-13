@@ -24,9 +24,19 @@
     <img src="esp8266.jpg" />
     Yup, this entire webpage is being served by this board, including this image!
   </div>
+  <h2>How does it work?</h2>
   <p>
-    Don't believe it? Learn more about <a href="https://example.com">how it works</a> or you can <a
-      href="https://github.com/furquan-lp/espweb">check the source code</a> yourself.</p>
+    The ESP8266 board has 4MB of flash storage out of which we reserve 1MB for the file system. Since this entire
+    website is little more than 50KB, the storage is more than enough. The microcontroller connects to a local WiFi and
+    creates a server over which the webpages and other files are served from its flash storage. There's a lot more to
+    the process but that's the gist of it.
+  </p>
+  <p>
+    Still don't believe it? Learn more about <a href="https://example.com">how it works</a> or you can <a
+      href="https://github.com/furquan-lp/espweb">check the source code</a> yourself. I wrote a <a
+      href="https://tctp.xyz/">blog post</a>
+    over at my blog, <i>The Chip Tinker Project</i>, going into more detail and explaining how you can do this as well.
+  </p>
   <h2>Server Info:</h2>
   <hr />
   <p>This server has been running since <span class="info" id="uptime">00:00:00</span>.</p>
