@@ -17,7 +17,7 @@ void setup() {
     digitalWrite(LED_BUILTIN, LOW);
     uint8_t wifi_attempt = 0;
     while (WiFi.status() != WL_CONNECTED) {
-        if (wifi_attempt >= 20) {
+        if (wifi_attempt >= 50) {
             Serial.println("Couldn't connect to WiFi. Aborting...");
             digitalWrite(LED_BUILTIN, HIGH);
             delay(1000);
