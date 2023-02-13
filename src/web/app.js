@@ -5,6 +5,7 @@ const colorsLight = {
   mainBg: '#f1faee',
   mainShadow: '#f1faee',
   mainText: '#1d3557',
+  mainLogo: '#1d3557',
   mainLink: '#457b9d',
   mainRed: '#e63946',
   mainLight: '#a8dadc',
@@ -17,6 +18,7 @@ const colorsDark = {
   mainBg: '#1d3557',
   mainShadow: '#1d3557',
   mainText: '#f1faee',
+  mainLogo: '#8ecae6',
   mainLink: '#e63946',
   mainRed: '#ffb703',
   mainLight: '#ffb703',
@@ -57,6 +59,7 @@ const nightClick = () => {
     root.style.setProperty('--main-bg', colorsDark.mainBg);
     root.style.setProperty('--main-shadow', colorsDark.mainShadow);
     root.style.setProperty('--main-text', colorsDark.mainText);
+    root.style.setProperty('--main-logo', colorsDark.mainLogo);
     root.style.setProperty('--main-link', colorsDark.mainLink);
     root.style.setProperty('--main-red', colorsDark.mainRed);
     root.style.setProperty('--main-light', colorsDark.mainLight);
@@ -69,6 +72,7 @@ const nightClick = () => {
     root.style.setProperty('--main-bg', colorsLight.mainBg);
     root.style.setProperty('--main-shadow', colorsLight.mainShadow);
     root.style.setProperty('--main-text', colorsLight.mainText);
+    root.style.setProperty('--main-logo', colorsLight.mainLogo);
     root.style.setProperty('--main-link', colorsLight.mainLink);
     root.style.setProperty('--main-red', colorsLight.mainRed);
     root.style.setProperty('--main-light', colorsLight.mainLight);
