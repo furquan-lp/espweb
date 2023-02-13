@@ -75,6 +75,7 @@ a:visited {
 .top-bar-logo {
   font-size: 2rem;
   font-family: 'Press Start 2P', monospace;
+  user-select: none;
 }
 
 .info {
