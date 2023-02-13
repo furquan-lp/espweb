@@ -29,8 +29,8 @@ void setup() {
         wifi_attempt++;
     }
     digitalWrite(LED_BUILTIN, HIGH);
-    Serial.printf("\nConnected at %s\n", WiFi.localIP().toString().c_str());
     ip_address = WiFi.localIP().toString();
+    Serial.printf("\nConnected at %s\n", ip_address.c_str());
 
     if (!SPIFFS.begin()) {
         Serial.println("An Error has occurred while mounting SPIFFS");
