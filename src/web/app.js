@@ -49,6 +49,7 @@ const updateData = (data) => {
     document.getElementById("heap").innerHTML = data.free_heap;
     document.getElementById("cpu").innerHTML = data.cpu;
     document.getElementById("flash").innerHTML = data.flash;
+    document.getElementById("version").innerHTML = data.version;
   }
 }
 
