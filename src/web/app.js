@@ -9,9 +9,8 @@ setInterval(() => {
 }, 2000);
 
 const getAll = () => {
-  axios.get('data')
+  axios.get('/data')
     .then(function (response) {
-      console.log(response.data);
       jsonObject = response.data;
     });
 }
@@ -22,4 +21,8 @@ const updateData = (data) => {
   document.getElementById("heap").innerHTML = data.free_heap;
   document.getElementById("cpu").innerHTML = data.cpu;
   document.getElementById("flash").innerHTML = data.flash;
+}
+
+const nightClick = () => {
+  console.log('hello')
 }
