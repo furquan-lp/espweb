@@ -5,11 +5,13 @@ const PROGMEM char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
     "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
     "System)\",\"version\":\"0.8.0\"}";
+bool invert_led = false;
 #else
 const PROGMEM char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
     "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
     "System)\",\"version\":\"0.8.0\"}";
+bool invert_led = true;
 #endif
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
@@ -63,8 +65,8 @@ void update_server_json_data(const char* ipaddr, uint32_t free_heap) {
  * Blinks the LED on (LOW or HIGH depending on whether invert is true) for 250ms
  * and off for 250ms.
  */
-void blink_led(uint8_t led_pin, bool invert) {
-    uint8_t on = invert ? LOW : HIGH;
+void blink_led(uint8_t led_pin) {
+    uint8_t on = invert_led ? LOW : HIGH;
     digitalWrite(led_pin, on);
     delay(250);
     digitalWrite(led_pin, !on);
