@@ -67,9 +67,14 @@ hr {
   font-family: 'Noto Mono', monospace;
 }
 
-img {
+.esp-img {
   display: flex;
+  flex-direction: column;
   justify-self: center;
+  align-items: center;
+}
+
+.esp-img img {
   margin: 10px auto;
   width: 50%;
   box-shadow: 2px 4px 10px #f1faee;
