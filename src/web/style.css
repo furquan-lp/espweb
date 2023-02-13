@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 html {
   background-color: white;
 }
@@ -26,7 +28,7 @@ hr {
 
 .top-bar-logo {
   font-size: 2rem;
-  font-family: monospace;
+  font-family: 'Press Start 2P', monospace;
 }
 
 .info {
