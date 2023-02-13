@@ -62,6 +62,7 @@ const nightClick = () => {
     root.style.setProperty('--main-light', colorsDark.mainLight);
     root.style.setProperty('--new-shadow', colorsDark.newShadow);
     root.style.setProperty('--new-blue', colorsDark.newBlue);
+    document.getElementById('moon-button').innerHTML = feather.icons['sun'].toSvg();
     nightMode = true;
   } else {
     root.style.setProperty('--html-bg', colorsLight.htmlBg);
@@ -73,6 +74,7 @@ const nightClick = () => {
     root.style.setProperty('--main-light', colorsLight.mainLight);
     root.style.setProperty('--new-shadow', colorsLight.newShadow);
     root.style.setProperty('--new-blue', colorsLight.newBlue);
+    document.getElementById('moon-button').innerHTML = feather.icons['moon'].toSvg();
     nightMode = false;
   }
 }
