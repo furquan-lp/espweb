@@ -16,11 +16,13 @@ const getAll = () => {
 }
 
 const updateData = (data) => {
-  document.getElementById("uptime").innerHTML = data.uptime;
-  document.getElementById("ip").innerHTML = data.ipaddr;
-  document.getElementById("heap").innerHTML = data.free_heap;
-  document.getElementById("cpu").innerHTML = data.cpu;
-  document.getElementById("flash").innerHTML = data.flash;
+  if (Object.keys(data).length) {
+    document.getElementById("uptime").innerHTML = data.uptime;
+    document.getElementById("ip").innerHTML = data.ipaddr;
+    document.getElementById("heap").innerHTML = data.free_heap;
+    document.getElementById("cpu").innerHTML = data.cpu;
+    document.getElementById("flash").innerHTML = data.flash;
+  }
 }
 
 const nightClick = () => {
