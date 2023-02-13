@@ -42,19 +42,27 @@ void handle_webserver_root(AsyncWebServerRequest* request) {
     sprintf(server_str, format_str, seconds);
     request->send(200, "text/plain", server_str);
     */
+    toggle_led(server_led_pin);
     request->send(SPIFFS, "/index.html", "text/html");
+    toggle_led(server_led_pin);
 }
 
 void handle_webserver_style(AsyncWebServerRequest* request) {
+    toggle_led(server_led_pin);
     request->send(SPIFFS, "/style.css", "text/css");
+    toggle_led(server_led_pin);
 }
 
 void handle_webserver_javascript(AsyncWebServerRequest* request) {
+    toggle_led(server_led_pin);
     request->send(SPIFFS, "/app.js", "text/javascript");
+    toggle_led(server_led_pin);
 }
 
 void handle_webserver_images(AsyncWebServerRequest* request) {
+    toggle_led(server_led_pin);
     request->send(SPIFFS, "/esp8266.jpg", "image/jpeg");
+    toggle_led(server_led_pin);
 }
 
 void handle_webserver_json(AsyncWebServerRequest* request) {
