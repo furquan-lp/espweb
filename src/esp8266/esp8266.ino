@@ -24,7 +24,7 @@ void setup() {
             ESP.deepSleep(0);
             return;
         }
-        blink_led(LED_BUILTIN, true);
+        blink_led(LED_BUILTIN);
         Serial.print(".");
         wifi_attempt++;
     }
