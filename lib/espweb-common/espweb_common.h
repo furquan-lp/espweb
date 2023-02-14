@@ -9,6 +9,9 @@
 const char* ssid = "****";
 const char* password = "****";
 
+const char* esp8266_mdns_url = "esp8266web";
+const char* esp32_mdns_url = "esp32web";
+
 AsyncWebServer server(80);
 
 #endif
