@@ -1,4 +1,5 @@
 #include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <FS.h>
@@ -31,6 +32,10 @@ void setup() {
     digitalWrite(LED_BUILTIN, HIGH);
     ip_address = WiFi.localIP().toString();
     Serial.printf("\nConnected at %s\n", ip_address.c_str());
+    if (MDNS.begin(esp8266_mdns_url)) {
+        Serial.printf("mDNS server started at http://%s.local/\n",
+                      esp32_mdns_url);
+    }
 
     if (!SPIFFS.begin()) {
         Serial.println("An Error has occurred while mounting SPIFFS");
