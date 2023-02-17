@@ -44,7 +44,7 @@ setInterval(() => {
 }, 2000);
 
 const getAll = () => {
-  axios.get('http://192.168.0.4/data')
+  axios.get('/data')
     .then(function (response) {
       jsonObject = response.data;
     });
@@ -61,9 +61,9 @@ const updateData = (data) => {
   }
 }
 
-const nightClick = () => {
+const updateColors = () => {
   const root = document.querySelector(':root');
-  if (!nightMode) {
+  if (nightMode) {
     root.style.setProperty('--html-bg', colorsDark.htmlBg);
     root.style.setProperty('--main-bg', colorsDark.mainBg);
     root.style.setProperty('--main-shadow', colorsDark.mainShadow);
@@ -75,9 +75,6 @@ const nightClick = () => {
     root.style.setProperty('--new-shadow', colorsDark.newShadow);
     root.style.setProperty('--new-blue', colorsDark.newBlue);
     document.getElementById('moon-button').innerHTML = feather.icons['sun'].toSvg();
-    nightMode = true;
-    Array.from(document.getElementsByClassName('espweb-link'))
-      .map(e => e.setAttribute('href', e.getAttribute('href').concat('?darkmode=true')));
   } else {
     root.style.setProperty('--html-bg', colorsLight.htmlBg);
     root.style.setProperty('--main-bg', colorsLight.mainBg);
@@ -90,8 +87,21 @@ const nightClick = () => {
     root.style.setProperty('--new-shadow', colorsLight.newShadow);
     root.style.setProperty('--new-blue', colorsLight.newBlue);
     document.getElementById('moon-button').innerHTML = feather.icons['moon'].toSvg();
+  }
+}
+
+const nightClick = () => {
+  if (!nightMode) {
+    Array.from(document.getElementsByClassName('espweb-link'))
+      .map(e => e.setAttribute('href', e.getAttribute('href').concat('?darkmode=true')));
+    nightMode = true;
+    updateColors();
+  } else {
     Array.from(document.getElementsByClassName('espweb-link'))
       .map(e => e.setAttribute('href', e.getAttribute('href').concat('?darkmode=false')));
     nightMode = false;
+    updateColors();
   }
 }
+
+updateColors();
