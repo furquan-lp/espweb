@@ -91,14 +91,12 @@ const updateColors = () => {
 
 const nightClick = () => {
   if (!nightMode) {
-    Array.from(document.getElementsByClassName('espweb-link'))
-      .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', true)));
     nightMode = true;
+    setDarkmodeParams();
     updateColors();
   } else {
-    Array.from(document.getElementsByClassName('espweb-link'))
-      .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', false)));
     nightMode = false;
+    setDarkmodeParams();
     updateColors();
   }
 }
@@ -114,4 +112,10 @@ const setParam = (link, param, value) => {
   }
 }
 
+const setDarkmodeParams = () => {
+  Array.from(document.getElementsByClassName('espweb-link'))
+    .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', nightMode)));
+}
+
 updateColors();
+setDarkmodeParams();
