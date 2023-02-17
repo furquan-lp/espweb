@@ -31,7 +31,7 @@ let jsonObject = {};
 let nightMode = (() => {
   const thisURL = new URL(window.location.toLocaleString());
   if (thisURL.searchParams.has('darkmode')) {
-    return thisURL.searchParams.get('darkmode');
+    return !!JSON.parse(thisURL.searchParams.get('darkmode'));
   } else {
     return false;
   }
