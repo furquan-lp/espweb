@@ -23,7 +23,7 @@ void setup() {
             esp_deep_sleep_start();
             return;
         }
-        blink_led(ESP32_LED_ONBOARD, false);
+        blink_led(ESP32_LED_ONBOARD);
         Serial.print(".");
         wifi_attempt++;
     }
