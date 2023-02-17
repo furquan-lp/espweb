@@ -113,8 +113,17 @@ const setParam = (link, param, value) => {
 }
 
 const setDarkmodeParams = () => {
-  Array.from(document.getElementsByClassName('espweb-link'))
-    .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', nightMode)));
+  if (nightMode) {
+    Array.from(document.getElementsByClassName('espweb-link'))
+      .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', nightMode)));
+  } else {
+    Array.from(document.getElementsByClassName('espweb-link'))
+      .map(e => e.setAttribute('href', (() => {
+        let newURL = new URL(e.getAttribute('href'), window.location.origin);
+        newURL.searchParams.delete('darkmode');
+        return newURL.toString();
+      })()));
+  }
 }
 
 updateColors();
