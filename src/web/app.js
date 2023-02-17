@@ -37,7 +37,6 @@ let nightMode = (() => {
   }
 })();
 
-
 setInterval(() => {
   getAll();
   updateData(jsonObject);
@@ -93,14 +92,25 @@ const updateColors = () => {
 const nightClick = () => {
   if (!nightMode) {
     Array.from(document.getElementsByClassName('espweb-link'))
-      .map(e => e.setAttribute('href', e.getAttribute('href').concat('?darkmode=true')));
+      .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', true)));
     nightMode = true;
     updateColors();
   } else {
     Array.from(document.getElementsByClassName('espweb-link'))
-      .map(e => e.setAttribute('href', e.getAttribute('href').concat('?darkmode=false')));
+      .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', false)));
     nightMode = false;
     updateColors();
+  }
+}
+
+const setParam = (link, param, value) => {
+  let url = new URL(link, window.location.origin);
+  if (url.searchParams.has(param)) {
+    url.searchParams.set(param, value);
+    return url.toString();
+  } else {
+    url.searchParams.append(param, value);
+    return url.toString();
   }
 }
 
