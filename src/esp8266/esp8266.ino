@@ -44,6 +44,7 @@ void setup() {
 
     server.on("/", HTTP_GET, handle_webserver_root);
     server.on("/style.css", HTTP_GET, handle_webserver_style);
+    server.on("/about.html", HTTP_GET, handle_webserver_about);
     server.on("/data", HTTP_GET, handle_webserver_json);
     server.on("/app.js", HTTP_GET, handle_webserver_javascript);
     server.on("/esp8266.jpg", HTTP_GET, handle_webserver_images);
