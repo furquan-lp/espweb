@@ -51,12 +51,12 @@ const getAll = () => {
 
 const updateData = (data) => {
   if (Object.keys(data).length) {
-    document.getElementById("uptime").innerHTML = data.uptime;
-    document.getElementById("ip").innerHTML = data.ipaddr;
-    document.getElementById("heap").innerHTML = data.free_heap;
-    document.getElementById("cpu").innerHTML = data.cpu;
-    document.getElementById("flash").innerHTML = data.flash;
-    document.getElementById("version").innerHTML = data.version;
+    setInnerHTML(document.getElementById("uptime"), data.uptime);
+    setInnerHTML(document.getElementById("ip"), data.ipaddr);
+    setInnerHTML(document.getElementById("heap"), data.free_heap);
+    setInnerHTML(document.getElementById("cpu"), data.cpu);
+    setInnerHTML(document.getElementById("flash"), data.flash);
+    setInnerHTML(document.getElementById("version"), data.version);
   }
 }
 
@@ -111,6 +111,12 @@ const setParam = (link, param, value) => {
     return url.toString();
   }
 }
+
+const setInnerHTML = (element, value) => {
+  if (element) {
+    element.innerHTML = value;
+  }
+};
 
 const setDarkmodeParams = () => {
   if (nightMode) {
