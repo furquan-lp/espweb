@@ -32,13 +32,14 @@ void setup() {
     digitalWrite(LED_BUILTIN, HIGH);
     ip_address = WiFi.localIP().toString();
     Serial.printf("\nConnected at %s\n", ip_address.c_str());
-    if (MDNS.begin(esp8266_mdns_url)) {
-        Serial.printf("mDNS server started at http://%s.local/\n",
-                      esp32_mdns_url);
-    }
 
     if (!SPIFFS.begin()) {
         Serial.println("An Error has occurred while mounting SPIFFS");
+    }
+
+    if (MDNS.begin(esp8266_mdns_url)) {
+        Serial.printf("mDNS server started at http://%s.local/\n",
+                      esp8266_mdns_url);
     }
 
     server.on("/", HTTP_GET, handle_webserver_root);
@@ -52,6 +53,7 @@ void setup() {
 }
 
 void loop() {
+    MDNS.update();
     update_server_json_data(ip_address.c_str(), ESP.getFreeHeap());
     delay(2000);
 }
