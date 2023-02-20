@@ -16,7 +16,72 @@
       <a href="index.html" class="espweb-link">Home</a>
       <span class="night-button" id="moon-button" onclick="nightClick()"><span data-feather="moon" /></span></span>
   </div>
-  <h1>About:</h1>
+  <h1>What even is ESPWeb?</h1>
+  <p>ESPWeb is an entire website complete with your usual HTML, CSS and JavaScript, that is hosted on a NodeMCU
+    (ESP8266) microcontroller with just 4MB of flash (of which only 1MB is used for this entire website) and 128KB (yes,
+    kilobytes) of SRAM. You can even check the RAM use at the homepage (under "Server Info"). The single core
+    <i>Xtensa</i> CPU on the board runs at a nominal 80MHz (it can be overclocked to 160MHz but I have no need for that,
+    yet).
+  </p>
+  <h2>How is it even possible?</h2>
+  <p>I'm sure you're wondering how it's even possible for such a performance constrained microcontroller board to host
+    an entire functioning website. Well the entire website is a little more than 50KB so the available flash memory is
+    not a problem. And while the performance is quite constrained on the device, very little happens server-side. Aside
+    from calculating uptime, available heap, etc. much of the work is done by client-side JavaScript code. Still the
+    memory needs to be carefully managed since unlike regular server systems, the stack is very limited so most of the
+    strings need to be allocated on the heap, which, as you can image, poses its own problems.
+  <p>The ESP8266 microcontroller device is surprisingly good at handling networking with WiFi so that's rarely a
+    problem. Espressif have solved this issue so well that even with a tiny PCB-trace antenna the board is able to
+    sustain a good connection with the available WiFi signal. </p>
+  </p>
+  <h2>How does it exactly work?</h2>
+  <p>As with any other web application or website, the entire project is divided into the frontend (which you're seeing
+    right now) and a backend server hosted on the microcontroller device. The standard boot cycle goes as follows:
+  <p>
+  <ul>
+    <li>The ESP8266 device wakes up and connects to the available WiFi. It attempts the connection for about 20 seconds
+      before it gives up and goes into a <i>deep sleep</i> mode until rebooted.</i></li>
+    <li>After a connection is established, the device obtains a local IP address on the LAN and attaches a MDNS
+      (Multicast DNS) local domain with its IP address.</li>
+    <li> It then tries to look into the 1MB reserved SPIFFS (SPI Flash File System) space on its flash. Once it can find
+      the <code>index.html</code>, <code>style.css</code> and <code>app.js</code> files, it starts an Asynchronous HTTP
+      server by serving index.html on the root (/) and the other files in their respective locations using callbacks to
+      the Async webserver.
+    </li>
+    <li>
+      It also sets up a callback to serve internal calculated data (uptime, local ip, memory usage, etc.) in JSON format
+      at <code>/data</code>.
+    </li>
+    <li>The JSON data is updated using a special function that executes every second and recalculates everything.</li>
+  </ul>
+  </p>
+  </p>
+  <p>
+  <h2>Over at the client side:</h2>
+  <ul>
+    <li>Things are relatively simple here. The served index.html (and about.html) files fetch the required scripts—axios
+      and feather—through a CDN and then everything is fairly static.
+    </li>
+    <li>
+      The data available at <code>/data</code> is fetched using axios in the <code>app.js</code> script and rendered to
+      the pages.
+    </li>
+    <li>
+      The icons are replaced into the markup using <a href="https://feathericons.com/">Feather Icons</a>.
+    </li>
+    <li>
+      The night mode code works in fairly standard manner by using dynamic color palettes and CSS variables that are
+      manipulated with JavaScript.
+    </li>
+  </ul>
+  </p>
+  <p>
+  <h2>Still don't get it? Or perhaps you just want to get in touch?</h2>
+  <p>You can check the code at my GitHub repository here: <a
+      href="https://github.com/furquan-lp/espweb">github.com/furquan-lp/espweb</a>.<br /> You can contact me at my
+    email over at <a href="mailto:furquan@pm.me">furquan@pm.me</a>.<br /> Thanks for checking out my project. You can
+    find more of my stuff at <a href="https://github.com/furquan-lp">my github</a>.</p>
+  </p>
   <div class="bottom-bar">
     <span>Copyright &#169; Syed Furquan Ahmad.</span>
     <span>Backend version: <span class="info" id="version">unknown</span></span>
