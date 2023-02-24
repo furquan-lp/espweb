@@ -4,13 +4,13 @@
 const PROGMEM char server_json_template[] =
     "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
     "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.8.4\"}";
+    "System)\",\"version\":\"0.9.0\"}";
 bool invert_led = false;
 #else
 const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
     "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":\"80MHz\",\"flash\":"
-    "\"4MB (1MB reserved for SPI Flash File System)\",\"version\":\"0.8.4\"}";
+    "\"4MB (1MB reserved for SPI Flash File System)\",\"version\":\"0.9.0\"}";
 bool invert_led = true;
 #endif
 bool led_toggled = false;
@@ -23,7 +23,7 @@ uint8_t server_led_pin = LED_BUILTIN;
 #endif
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
-                      128];
+                      150];
 
 /**
  * Returns an array of unsigned 32 bit integers containing the uptime in
