@@ -47,6 +47,12 @@ void handle_webserver_root(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
 }
 
+void handle_webserver_about(AsyncWebServerRequest* request) {
+    toggle_led(server_led_pin);
+    request->send(SPIFFS, "/about.html", "text/html");
+    toggle_led(server_led_pin);
+}
+
 void handle_webserver_style(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
     request->send(SPIFFS, "/style.css", "text/css");
