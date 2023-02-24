@@ -51,7 +51,10 @@ const getAll = () => {
 
 const updateData = (data) => {
   if (Object.keys(data).length) {
-    setInnerHTML(document.getElementById("uptime"), data.uptime);
+    setInnerHTML(document.getElementById("uptime-d"), data.uptime_d);
+    setInnerHTML(document.getElementById("uptime-h"), data.uptime_h);
+    setInnerHTML(document.getElementById("uptime-m"), data.uptime_m);
+    setInnerHTML(document.getElementById("uptime-s"), data.uptime_s);
     setInnerHTML(document.getElementById("ip"), data.ipaddr);
     setInnerHTML(document.getElementById("heap"), data.free_heap);
     setInnerHTML(document.getElementById("cpu"), data.cpu);
