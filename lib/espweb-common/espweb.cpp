@@ -2,15 +2,17 @@
 
 #if defined(ESP32)
 const PROGMEM char server_json_template[] =
-    "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
+    "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
+    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
     "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
     "System)\",\"version\":\"0.9.0\"}";
 bool invert_led = false;
 #else
 const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
-    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":\"80MHz\",\"flash\":"
-    "\"4MB (1MB reserved for SPI Flash File System)\",\"version\":\"0.9.0\"}";
+    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
+    "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
+    "System)\",\"version\":\"0.9.0\"}";
 bool invert_led = true;
 #endif
 bool led_toggled = false;
@@ -96,12 +98,13 @@ void handle_webserver_json(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
 }
 
-void update_server_json_data(const char* ipaddr, uint32_t free_heap) {
+void update_server_json_data(const char* ipaddr, uint32_t free_heap,
+                             int32_t wifi_rssi) {
     uint32_t* up = get_uptime();
     snprintf(server_json_data,
              sizeof(server_json_data) / sizeof(server_json_data[0]),
              server_json_template, up[0], up[1], up[2], up[3], ipaddr,
-             free_heap);
+             free_heap, wifi_rssi);
     free(up);
 }
 
