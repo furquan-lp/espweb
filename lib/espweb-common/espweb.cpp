@@ -35,6 +35,15 @@ char* get_uptime() {
     return buf;
 }
 
+void log_request(AsyncWebServerRequest* request, const char* file) {
+    if (!LOGGING) return;
+    const char* methods[] = {"NOP",         "HTTP_GET",    "HTTP_POST",
+                             "HTTP_DELETE", "HTTP_PUT",    "HTTP_PATCH",
+                             "HTTP_HEAD",   "HTTP_OPTIONS"};
+    Serial.printf("%s on %s%s\n", methods[request->method()], request->url(),
+                  file);
+}
+
 void handle_webserver_root(AsyncWebServerRequest* request) {
     /*uint32_t seconds = millis() / 1000;
     const char* format_str = "Hello World!\nSeconds since boot: %d\n";
@@ -44,36 +53,42 @@ void handle_webserver_root(AsyncWebServerRequest* request) {
     */
     toggle_led(server_led_pin);
     request->send(SPIFFS, "/index.html", "text/html");
+    log_request(request, "index.html");
     toggle_led(server_led_pin);
 }
 
 void handle_webserver_about(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
     request->send(SPIFFS, "/about.html", "text/html");
+    log_request(request, "about.html");
     toggle_led(server_led_pin);
 }
 
 void handle_webserver_style(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
     request->send(SPIFFS, "/style.css", "text/css");
+    log_request(request, "style.css");
     toggle_led(server_led_pin);
 }
 
 void handle_webserver_javascript(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
     request->send(SPIFFS, "/app.js", "text/javascript");
+    log_request(request, "app.js");
     toggle_led(server_led_pin);
 }
 
 void handle_webserver_images(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
     request->send(SPIFFS, "/esp8266.jpg", "image/jpeg");
+    log_request(request, "esp8266.jpg");
     toggle_led(server_led_pin);
 }
 
 void handle_webserver_json(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
     request->send(200, "application/json", server_json_data);
+    log_request(request, server_json_data);
     toggle_led(server_led_pin);
 }
 
