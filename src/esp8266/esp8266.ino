@@ -13,22 +13,9 @@ void setup() {
     Serial.setDebugOutput(true);
     pinMode(LED_BUILTIN, OUTPUT);
 
-    WiFi.begin(ssid, password);
     Serial.print("Connecting to WiFi");
     digitalWrite(LED_BUILTIN, LOW);
-    uint8_t wifi_attempt = 0;
-    while (WiFi.status() != WL_CONNECTED) {
-        if (wifi_attempt >= 50) {
-            Serial.println("Couldn't connect to WiFi. Aborting...");
-            digitalWrite(LED_BUILTIN, HIGH);
-            delay(1000);
-            ESP.deepSleep(0);
-            return;
-        }
-        blink_led(LED_BUILTIN);
-        Serial.print(".");
-        wifi_attempt++;
-    }
+    init_WiFi();
     digitalWrite(LED_BUILTIN, HIGH);
     ip_address = WiFi.localIP().toString();
     Serial.printf("\nConnected at %s\n", ip_address.c_str());
@@ -57,4 +44,22 @@ void loop() {
     MDNS.update();
     update_server_json_data(ip_address.c_str(), ESP.getFreeHeap());
     delay(2000);
+}
+
+int init_WiFi() {
+    WiFi.begin(ssid, password);
+    uint8_t wifi_attempt = 0;
+    while (WiFi.status() != WL_CONNECTED) {
+        if (wifi_attempt >= 50) {
+            Serial.println("Couldn't connect to WiFi. Aborting...");
+            digitalWrite(LED_BUILTIN, HIGH);
+            delay(1000);
+            ESP.deepSleep(0);
+            return 1;
+        }
+        blink_led(LED_BUILTIN);
+        Serial.print(".");
+        wifi_attempt++;
+    }
+    return 0;
 }
