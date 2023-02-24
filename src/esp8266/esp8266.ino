@@ -53,7 +53,7 @@ void loop() {
         if (!init_WiFi()) return;
     }
     MDNS.update();
-    update_server_json_data(ip_address.c_str(), ESP.getFreeHeap());
+    update_server_json_data(ip_address.c_str(), ESP.getFreeHeap(), WiFi.RSSI());
     delay(2000);
     loop_counter_0 = loop_counter_0 >= 20 ? 0 : loop_counter_0 + 1;
 }
