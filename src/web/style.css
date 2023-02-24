@@ -109,6 +109,11 @@ a:visited {
   box-shadow: 1px 2px 10px var(--new-shadow);
 }
 
+.esp-img video {
+  border-radius: 0.1rem;
+  box-shadow: 1px 2px 10px var(--new-shadow);
+}
+
 .night-button {
   display: flex;
   align-items: center;
