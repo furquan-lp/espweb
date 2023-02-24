@@ -15,6 +15,7 @@ void setup() {
 
     Serial.print("Connecting to WiFi");
     digitalWrite(LED_BUILTIN, LOW);
+    WiFi.persistent(false);
     init_WiFi();
     digitalWrite(LED_BUILTIN, HIGH);
     ip_address = WiFi.localIP().toString();
