@@ -56,6 +56,7 @@ const updateData = (data) => {
     setInnerHTML(document.getElementById("uptime-m"), data.uptime_m);
     setInnerHTML(document.getElementById("uptime-s"), data.uptime_s);
     setInnerHTML(document.getElementById("ip"), data.ipaddr);
+    setInnerHTML(document.getElementById("rssi"), data.rssi);
     setInnerHTML(document.getElementById("heap"), data.free_heap);
     setInnerHTML(document.getElementById("cpu"), data.cpu);
     setInnerHTML(document.getElementById("flash"), data.flash);
