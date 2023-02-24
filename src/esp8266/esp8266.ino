@@ -62,5 +62,6 @@ int init_WiFi() {
         Serial.print(".");
         wifi_attempt++;
     }
+    WiFi.setAutoReconnect(true);
     return 0;
 }
