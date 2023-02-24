@@ -7,6 +7,7 @@
 #include <espweb_common.h>
 
 String ip_address = "NULL";
+uint8_t loop_counter_0 = 0;
 
 void setup() {
     Serial.begin(115200);
@@ -45,9 +46,16 @@ void setup() {
 }
 
 void loop() {
+    if (loop_counter_0 >= 20 && !WiFi.isConnected()) {
+        Serial.println(
+            "WiFi is disconnected. Attempting to reestablish connection");
+        WiFi.disconnect();
+        if (!init_WiFi()) return;
+    }
     MDNS.update();
     update_server_json_data(ip_address.c_str(), ESP.getFreeHeap());
     delay(2000);
+    loop_counter_0 = loop_counter_0 >= 20 ? 0 : loop_counter_0 + 1;
 }
 
 int init_WiFi() {
