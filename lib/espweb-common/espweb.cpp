@@ -8,9 +8,9 @@ const PROGMEM char server_json_template[] =
 bool invert_led = false;
 #else
 const PROGMEM char server_json_template[] =
-    "{\"uptime\":\"%s\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":"
-    "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.8.4\"}";
+    "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
+    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"cpu\":\"80MHz\",\"flash\":"
+    "\"4MB (1MB reserved for SPI Flash File System)\",\"version\":\"0.8.4\"}";
 bool invert_led = true;
 #endif
 bool led_toggled = false;
@@ -25,14 +25,24 @@ char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
                       128];
 
-char* get_uptime() {
+/**
+ * Returns an array of unsigned 32 bit integers containing the uptime in
+ * increasing order of magnitude (i.e. seconds, minutes, etc.).
+ * @return uint32_t {seconds, minutes, hours, days}
+ */
+uint32_t* get_uptime() {
+    uint32_t* uptime = (uint32_t*)malloc(sizeof(uint32_t) * 4);
     uint32_t seconds = millis() / 1000;
-    uint32_t hours = seconds / (60 * 60);
-    uint32_t minutes = (seconds - (hours * 60 * 60)) / 60;
-    seconds -= minutes * 60 + hours * (60 * 60);
-    char* buf = (char*)malloc(sizeof(*buf) * 20);
+    uptime[3] = seconds / (60 * 60 * 24);
+    uptime[2] = seconds % (60 * 60 * 24) / (60 * 60);
+    uptime[1] = ((seconds % (60 * 60 * 24)) % (60 * 60)) / 60;
+    seconds -=
+        (uptime[3] * 60 * 60 * 24) + (uptime[2] * 60 * 60) + (uptime[1] * 60);
+    uptime[0] = seconds;
+    /*char* buf = (char*)malloc(sizeof(*buf) * 20);
     snprintf(buf, 20, "%d:%d:%d", hours, minutes, seconds);
-    return buf;
+    return buf;*/
+    return uptime;
 }
 
 void log_request(AsyncWebServerRequest* request, const char* file) {
@@ -45,12 +55,6 @@ void log_request(AsyncWebServerRequest* request, const char* file) {
 }
 
 void handle_webserver_root(AsyncWebServerRequest* request) {
-    /*uint32_t seconds = millis() / 1000;
-    const char* format_str = "Hello World!\nSeconds since boot: %d\n";
-    char server_str[sizeof(format_str) + 64];
-    sprintf(server_str, format_str, seconds);
-    request->send(200, "text/plain", server_str);
-    */
     toggle_led(server_led_pin);
     request->send(SPIFFS, "/index.html", "text/html");
     log_request(request, "index.html");
@@ -93,10 +97,11 @@ void handle_webserver_json(AsyncWebServerRequest* request) {
 }
 
 void update_server_json_data(const char* ipaddr, uint32_t free_heap) {
-    char* up = get_uptime();
+    uint32_t* up = get_uptime();
     snprintf(server_json_data,
              sizeof(server_json_data) / sizeof(server_json_data[0]),
-             server_json_template, up, ipaddr, free_heap);
+             server_json_template, up[0], up[1], up[2], up[3], ipaddr,
+             free_heap);
     free(up);
 }
 
