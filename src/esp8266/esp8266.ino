@@ -16,7 +16,10 @@ void setup() {
     Serial.print("Connecting to WiFi");
     digitalWrite(LED_BUILTIN, LOW);
     WiFi.persistent(false);
-    init_WiFi();
+    if (!init_WiFi()) {
+        Serial.println("Couldn't connect to WiFi. Aborting...");
+        return;
+    }
     digitalWrite(LED_BUILTIN, HIGH);
     ip_address = WiFi.localIP().toString();
     Serial.printf("\nConnected at %s\n", ip_address.c_str());
@@ -52,10 +55,8 @@ int init_WiFi() {
     uint8_t wifi_attempt = 0;
     while (WiFi.status() != WL_CONNECTED) {
         if (wifi_attempt >= 50) {
-            Serial.println("Couldn't connect to WiFi. Aborting...");
             digitalWrite(LED_BUILTIN, HIGH);
             delay(1000);
-            ESP.deepSleep(0);
             return 1;
         }
         blink_led(LED_BUILTIN);
