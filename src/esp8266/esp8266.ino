@@ -58,19 +58,19 @@ void loop() {
     loop_counter_0 = loop_counter_0 >= 20 ? 0 : loop_counter_0 + 1;
 }
 
-int init_WiFi() {
+bool init_WiFi() {
     WiFi.begin(ssid, password);
     uint8_t wifi_attempt = 0;
     while (WiFi.status() != WL_CONNECTED) {
         if (wifi_attempt >= 50) {
             digitalWrite(LED_BUILTIN, HIGH);
             delay(1000);
-            return 1;
+            return false;
         }
         blink_led(LED_BUILTIN);
         Serial.print(".");
         wifi_attempt++;
     }
     WiFi.setAutoReconnect(true);
-    return 0;
+    return true;
 }
