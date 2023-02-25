@@ -31,6 +31,10 @@ body {
   padding: 5px 10px;
 }
 
+.portrait-viewport {
+  margin: 0.5rem 0.2rem;
+}
+
 hr {
   margin: -5px 0;
   color: var(--main-bg);
@@ -60,6 +64,19 @@ a:visited {
   box-shadow: 1px 2px 5px var(--new-shadow);
   font-size: 1.5rem;
   font-family: monospace;
+}
+
+.top-bar-logo:hover {
+  text-decoration: none;
+  color: var(--main-link);
+}
+
+.top-bar-logo:visited {
+  color: var(--main-logo);
+}
+
+.top-bar-logo:visited:hover {
+  color: var(--main-link);
 }
 
 .top-bar-left {
