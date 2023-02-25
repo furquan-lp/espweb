@@ -1,4 +1,5 @@
 # ESPWeb
+![](https://img.shields.io/github/license/furquan-lp/espweb?style=flat-square) ![](https://img.shields.io/website?label=server&style=flat-square&url=https%3A%2F%2Ffurquan-lp.gh.srv.us%2F) ![](https://img.shields.io/website?style=flat-square&url=https%3A%2F%2Fespdev.cloud%2F)
 An entire website hosted on an ESP8266/ESP32 microconctroller board.
 
 ## Legal
@@ -15,4 +16,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
