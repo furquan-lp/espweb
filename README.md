@@ -1,7 +1,7 @@
 # ESPWeb
 ![](https://img.shields.io/github/license/furquan-lp/espweb?style=flat-square) ![](https://img.shields.io/website?label=server&style=flat-square&url=https%3A%2F%2Ffurquan-lp.gh.srv.us%2F) ![](https://img.shields.io/website?style=flat-square&url=https%3A%2F%2Fespdev.cloud%2F)
 
-An entire website hosted on an ESP8266/ESP32 microconctroller board.
+An entire website hosted on an ESP8266/ESP32 microconctroller board. Visit live at [espdev.cloud](https://espdev.cloud).
 
 ![](screenshot.png)
 
