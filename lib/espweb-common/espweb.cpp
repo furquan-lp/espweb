@@ -96,6 +96,13 @@ void handle_webserver_images(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
 }
 
+void handle_webserver_videos(AsyncWebServerRequest* request) {
+    toggle_led(server_led_pin);
+    request->send(SPIFFS, "/espvideo.webm", "video/webm");
+    log_request(request, "espvideo.webm");
+    toggle_led(server_led_pin);
+}
+
 void handle_webserver_json(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
     request->send(200, "application/json", server_json_data);
