@@ -49,7 +49,8 @@
     <li>The ESP8266 device wakes up and connects to the available WiFi. It attempts the connection for about 20 seconds
       before it gives up and goes into a <i>deep sleep</i> mode until rebooted.</i></li>
     <li>After a connection is established, the device obtains a local IP address on the LAN and attaches a MDNS
-      (Multicast DNS) local domain with its IP address.</li>
+      (Multicast DNS) local domain with its IP address. It also checks the connection every 40 seconds and attempts a
+      reconnection if the WiFi is disconnected.</li>
     <li> It then tries to look into the 1MB reserved SPIFFS (SPI Flash File System) space on its flash. Once it can find
       the <code>index.html</code>, <code>style.css</code> and <code>app.js</code> files, it starts an Asynchronous HTTP
       server by serving index.html on the root (/) and the other files in their respective locations using callbacks to
