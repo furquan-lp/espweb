@@ -30,7 +30,7 @@ char server_json_data[sizeof(server_json_template) /
 /**
  * Returns an array of unsigned 32 bit integers containing the uptime in
  * increasing order of magnitude (i.e. seconds, minutes, etc.).
- * @return uint32_t {seconds, minutes, hours, days}
+ * @return uint32_t* {seconds, minutes, hours, days}; must be freed after use
  */
 uint32_t* get_uptime() {
     uint32_t* uptime = (uint32_t*)malloc(sizeof(uint32_t) * 4);
@@ -52,8 +52,13 @@ void log_request(AsyncWebServerRequest* request, const char* file) {
     const char* methods[] = {"NOP",         "HTTP_GET",    "HTTP_POST",
                              "HTTP_DELETE", "HTTP_PUT",    "HTTP_PATCH",
                              "HTTP_HEAD",   "HTTP_OPTIONS"};
-    Serial.printf("%s on %s%s\n", methods[request->method()], request->url(),
-                  file);
+    const int request_method = (int)request->method();
+    if (request_method > sizeof(methods) / sizeof(methods[0])) {
+        Serial.printf("Error: request->method() out of bounds for methods.");
+    } else {
+        Serial.printf("%s on %s%s\n", methods[request_method], request->url(),
+                      file);
+    }
 }
 
 void handle_webserver_root(AsyncWebServerRequest* request) {
