@@ -5,14 +5,14 @@ const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
     "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
     "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.9.0\"}";
+    "System)\",\"version\":\"0.9.1-esp32\"}";
 bool invert_led = false;
 #else
 const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
     "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
     "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.9.0\"}";
+    "System)\",\"version\":\"0.9.1-nodemcu\"}";
 bool invert_led = true;
 #endif
 bool led_toggled = false;
