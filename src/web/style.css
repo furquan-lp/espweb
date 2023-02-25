@@ -19,13 +19,16 @@ html {
 
 body {
   background-color: var(--main-bg);
-  margin: 5px auto;
-  padding: 5px 10px;
-  width: 768px;
   height: 100%;
   border-radius: 0.5rem;
   font-family: sans-serif;
   color: var(--main-text);
+}
+
+.landscape-viewport {
+  width: 768px;
+  margin: 5px auto;
+  padding: 5px 10px;
 }
 
 hr {
