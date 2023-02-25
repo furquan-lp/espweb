@@ -11,7 +11,7 @@
 
 <body>
   <div class="top-bar">
-    <span class="top-bar-left"><span class="top-bar-logo">ESPWeb</span>&nbsp;- About</span>
+    <span class="top-bar-left"><a href="/" class="top-bar-logo">ESPWeb</a>&nbsp;- About</span>
     <span class="top-bar-right">
       <a href="/" class="espweb-link">Home</a>
       <span class="night-button" id="moon-button" onclick="nightClick()"><span data-feather="moon" /></span></span>
@@ -27,15 +27,16 @@
     <video autoplay loop>
       <source src=" espvideo.webm" type="video/webm" />
     </video>
-    <span><i>Yes</i> this video is also hosted on the microcontroller</span>
+    <span><i>Yes</i> this video is also hosted on this same microcontroller</span>
   </div>
   <h2>How is it even possible?</h2>
   <p>I'm sure you're wondering how it's even possible for such a performance constrained microcontroller board to host
-    an entire functioning website. Well the entire website is a little more than 50KB so the available flash memory is
-    not a problem. And while the performance is quite constrained on the device, very little happens server-side. Aside
-    from calculating uptime, available heap, etc. much of the work is done by client-side JavaScript code. Still the
-    memory needs to be carefully managed since unlike regular server systems, the stack is very limited so most of the
-    strings need to be allocated on the heap, which, as you can image, poses its own problems.
+    an entire functioning website. Well the entire website is a little around 15KB (~633KB including the image and
+    video) so the available flash memory is not a problem. And while the performance is quite constrained on the device,
+    very little happens server-side. Aside from calculating uptime, available heap, etc. much of the work is done by
+    client-side JavaScript code. Still the memory needs to be carefully managed since unlike regular server systems, the
+    stack is very limited so most of the strings need to be allocated on the heap, which, as you can image, poses its
+    own problems.
   <p>The ESP8266 microcontroller device is surprisingly good at handling networking with WiFi so that's rarely a
     problem. Espressif have solved this issue so well that even with a tiny PCB-trace antenna the board is able to
     sustain a good connection with the available WiFi signal. </p>
@@ -53,6 +54,10 @@
       the <code>index.html</code>, <code>style.css</code> and <code>app.js</code> files, it starts an Asynchronous HTTP
       server by serving index.html on the root (/) and the other files in their respective locations using callbacks to
       the Async webserver.
+    </li>
+    <li>It also finds the assets—the <code>esp8266.jpg</code> image and the <code>espvideo.webm</code> video (since
+      they're small enough to fit under 1MB)—and serves them on the root. SPIFFS is a flat file system so it has no
+      directories, everything is served directly on the root.
     </li>
     <li>
       It also sets up a callback to serve internal calculated data (uptime, local ip, memory usage, etc.) in JSON format
