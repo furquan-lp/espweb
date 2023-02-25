@@ -37,6 +37,10 @@ let nightMode = (() => {
   }
 })();
 
+if (window.innerWidth > window.innerHeight) {
+  document.body.classList.toggle("landscape-viewport");
+}
+
 setInterval(() => {
   getAll();
   updateData(jsonObject);
