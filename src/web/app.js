@@ -37,9 +37,7 @@ let nightMode = (() => {
   }
 })();
 
-if (window.innerWidth > window.innerHeight) {
-  document.body.classList.toggle("landscape-viewport");
-}
+document.body.classList.toggle(window.innerWidth > window.innerHeight ? "landscape-viewport" : "portrait-viewport");
 
 setInterval(() => {
   getAll();
