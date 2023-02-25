@@ -3,6 +3,10 @@
 
 An entire website hosted on an ESP8266/ESP32 microconctroller board.
 
+![](screenshot.png)
+
+![](screenshot-mobile.jpg)
+
 ## Legal
 Copyright 2023 Syed Furquan Ahmad
 
