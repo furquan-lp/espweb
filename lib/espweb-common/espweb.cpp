@@ -84,8 +84,8 @@ void handle_webserver_style(AsyncWebServerRequest* request) {
 
 void handle_webserver_javascript(AsyncWebServerRequest* request) {
     toggle_led(server_led_pin);
-    request->send(SPIFFS, "/app.js", "text/javascript");
-    log_request(request, "app.js");
+    request->send(SPIFFS, "/script.js", "text/javascript");
+    log_request(request, "script.js");
     toggle_led(server_led_pin);
 }
 
