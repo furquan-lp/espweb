@@ -52,9 +52,9 @@
       (Multicast DNS) local domain with its IP address. It also checks the connection every 40 seconds and attempts a
       reconnection if the WiFi is disconnected.</li>
     <li> It then tries to look into the 1MB reserved SPIFFS (SPI Flash File System) space on its flash. Once it can find
-      the <code>index.html</code>, <code>style.css</code> and <code>app.js</code> files, it starts an Asynchronous HTTP
-      server by serving index.html on the root (/) and the other files in their respective locations using callbacks to
-      the Async webserver.
+      the <code>index.html</code>, <code>style.css</code> and <code>script.js</code> files, it starts an Asynchronous
+      HTTP server by serving index.html on the root (/) and the other files in their respective locations using
+      callbacks to the Async webserver.
     </li>
     <li>It also finds the assets—the <code>esp8266.jpg</code> image and the <code>espvideo.webm</code> video (since
       they're small enough to fit under 1MB)—and serves them on the root. SPIFFS is a flat file system so it has no
@@ -75,8 +75,8 @@
       and feather—through a CDN and then everything is fairly static.
     </li>
     <li>
-      The data available at <code>/data</code> is fetched using axios in the <code>app.js</code> script and rendered to
-      the pages.
+      The data available at <code>/data</code> is fetched using axios in the <code>script.js</code> script and rendered
+      to the pages.
     </li>
     <li>
       The icons are replaced into the markup using <a href="https://feathericons.com/">Feather Icons</a>.
@@ -99,6 +99,6 @@
     <span>Backend version: <span class="info" id="version">unknown</span></span>
   </div>
 </body>
-<script src="app.js"></script>
+<script src="script.js"></script>
 
 </html>
