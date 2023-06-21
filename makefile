@@ -1,6 +1,6 @@
 ARDUINO_CLI	= ../arduino-cli_0.31.0_Linux_64bit/arduino-cli
 ESPTOOL	= esptool
-SPIFFS_TOOL	= python spiffsgen.py
+SPIFFS_TOOL	= python3 spiffsgen.py
 SPIFFS_TOOL_FLAGS	= --page-size 256 --block-size 8192 --no-magic-len --aligned-obj-ix-tables --meta-len=0 0xFA000
 SPIFFS_BEGIN_ESP8266	= 0x300000
 BOARD_ESP32	= esp32:esp32:esp32
