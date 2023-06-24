@@ -80,8 +80,8 @@
   <p>
   <h2>Over at the client side:</h2>
   <ul>
-    <li>Things are relatively simple here. The served index.html (and about.html) files fetch the required scripts—axios
-      and feather—through a CDN and then everything is fairly static.
+    <li>Things are relatively simple here. The served index.html (and about.html) files fetch the required scripts—
+      axios, Google analytics and feather—through a CDN and then everything is fairly static.
     </li>
     <li>
       The data available at <code>/data</code> is fetched using axios in the <code>script.js</code> script and rendered
@@ -89,6 +89,9 @@
     </li>
     <li>
       The icons are replaced into the markup using <a href="https://feathericons.com/">Feather Icons</a>.
+    </li>
+    <li>
+      The Google Analytics tag is loaded (on both index and about) and begins observing.
     </li>
     <li>
       The night mode code works in fairly standard manner by using dynamic color palettes and CSS variables that are
