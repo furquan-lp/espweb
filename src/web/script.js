@@ -1,4 +1,4 @@
-console.log('ESPWeb frontend version 1.0.0');
+console.log('ESPWeb frontend version 1.1.0');
 feather.replace();
 
 const colorsLight = {
