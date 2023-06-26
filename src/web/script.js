@@ -33,7 +33,7 @@ let nightMode = (() => {
   if (thisURL.searchParams.has('darkmode')) {
     return !!JSON.parse(thisURL.searchParams.get('darkmode'));
   } else {
-    return false;
+    return true;
   }
 })();
 
@@ -125,7 +125,7 @@ const setInnerHTML = (element, value) => {
 };
 
 const setDarkmodeParams = () => {
-  if (nightMode) {
+  if (!nightMode) {
     Array.from(document.getElementsByClassName('espweb-link'))
       .map(e => e.setAttribute('href', setParam(e.getAttribute('href'), 'darkmode', nightMode)));
   } else {
