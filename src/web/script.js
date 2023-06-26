@@ -15,16 +15,16 @@ const colorsLight = {
 };
 
 const colorsDark = {
-  mainBg: '#1d3557',
-  mainShadow: '#1d3557',
-  mainText: '#f1faee',
-  mainLogo: '#8ecae6',
+  mainBg: '#3b4252',
+  mainShadow: '#3b4252',
+  mainText: '#eceff4',
+  mainLogo: '#81a1c1',
   mainLink: '#e63946',
   mainRed: '#ffb703',
   mainLight: '#ffb703',
-  newShadow: '#14213d',
+  newShadow: '#2e3440',
   newBlue: '#fb8500',
-  htmlBg: '#023047'
+  htmlBg: '#2e3440'
 };
 
 let jsonObject = {};
