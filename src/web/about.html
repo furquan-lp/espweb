@@ -12,7 +12,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-1V5PT34QYF');
   </script>
   <title>ESPWeb | About</title>
@@ -102,9 +101,25 @@
   <p>
   <h2>Still don't get it? Or perhaps you just want to get in touch?</h2>
   <p>You can check the code at my GitHub repository here: <a
-      href="https://github.com/furquan-lp/espweb">github.com/furquan-lp/espweb</a>.<br /> You can contact me at my
-    email over at <a href="mailto:furquan@pm.me">furquan@pm.me</a>.<br /> Thanks for checking out my project. You can
-    find more of my stuff at <a href="https://github.com/furquan-lp">my github</a>.</p>
+      href="https://github.com/furquan-lp/espweb">github.com/furquan-lp/espweb</a>. The code structure looks as follows:
+  <p>
+  <ul>
+    <li><code>lib/espweb-common</code>: The source files for the espweb-common library that contains common code for
+      both ESP32 and ESP8266 microcontrollers. <code>espweb.cpp</code> handles the routing and the header files contain
+      the various constants and macros needed for both microcontrollers.
+    </li>
+    <li><code>src/esp32</code>: The source file for the ESP32 microcontroller.</li>
+    <li><code>src/esp8266</code>: The source file for the ESP8266 microcontroller.</li>
+    <li><code>src/web</code>: The HTML/CSS/JavaScript files and the related assets for this website that are served by
+      the webserver.</li>
+    <li><code>makefile</code>: The makefile to build and upload the source file to the two microcontrollers.</li>
+    <li><code>tunnel.sh</code>: The bash script to create a SSH tunnel for the webserver to port forward it to the
+      internet.</li>
+  </ul>
+  </p>
+  You can contact me at my email over at <a href="mailto:furquan@pm.me">furquan@pm.me</a>.<br /> Thanks for checking out
+  my project. You can find more of my stuff at <a href="https://github.com/furquan-lp">my github</a>.
+  </p>
   </p>
   <div class="bottom-bar">
     <span>Copyright &#169; Syed Furquan Ahmad.</span>
