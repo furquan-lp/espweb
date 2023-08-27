@@ -156,3 +156,10 @@ a:visited {
   border-color: var(--main-light);
   color: var(--new-blue);
 }
+
+code {
+  background-color: var(--html-bg);
+  font-family: monospace;
+  font-size: large;
+  padding: 1px;
+}
