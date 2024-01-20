@@ -1,4 +1,4 @@
-ARDUINO_CLI	= ../arduino-cli_0.31.0_Linux_64bit/arduino-cli
+ARDUINO_CLI	= ../arduino-cli_0.35.1_Linux_64bit/arduino-cli
 ESPTOOL	= esptool
 SPIFFS_TOOL	= python3 spiffsgen.py
 SPIFFS_TOOL_FLAGS	= --page-size 256 --block-size 8192 --no-magic-len --aligned-obj-ix-tables --meta-len=0 0xFA000
