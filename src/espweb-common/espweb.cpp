@@ -47,6 +47,20 @@ uint32_t* get_uptime() {
     return uptime;
 }
 
+uint16_t get_fs_reboots() {
+    File serverdat = SPIFFS.open("/serverdata.txt", "r");
+    if (!serverdat) {
+        serverdat.close();
+        return -1;
+    } else {
+        int dat = serverdat.read();
+        /*serverdat.close();
+        char* converted;
+        long val = strtol(dat, &converted, 10);*/
+        return (uint16_t) dat;
+    }
+}
+
 void log_request(AsyncWebServerRequest* request, const char* file) {
     if (!LOGGING) return;
     const char* methods[] = {"NOP",         "HTTP_GET",    "HTTP_POST",
