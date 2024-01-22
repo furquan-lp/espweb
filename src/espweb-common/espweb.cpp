@@ -48,16 +48,18 @@ uint32_t* get_uptime() {
 }
 
 uint16_t get_fs_reboots() {
-    File serverdat = SPIFFS.open("/serverdata.txt", "r");
+    File serverdat = SPIFFS.open("/serverdata.bin", "r");
     if (!serverdat) {
         serverdat.close();
         return -1;
     } else {
-        int dat = serverdat.read();
-        /*serverdat.close();
-        char* converted;
+        uint8_t b1 = serverdat.read();
+        uint8_t b2 = serverdat.read();
+        serverdat.close();
+        uint16_t val = (b1 << 8) + b2;
+        /*char* converted;
         long val = strtol(dat, &converted, 10);*/
-        return (uint16_t) dat;
+        return (uint16_t) val;
     }
 }
 
