@@ -10,7 +10,7 @@ PORT_ESP8266	= /dev/ttyACM0
 SOURCE_ESP32	= src/esp32
 SOURCE_ESP8266	= src/esp8266
 SOURCE_LIBRARIES	= src
-SOURCE_SPIFFS	= src/web
+SOURCE_SPIFFS	= src/spiffs
 BUILD_ESP8266	= esp8266-build/esp8266.ino.bin
 BUILD_SPIFFS	= spiffs.bin
 
