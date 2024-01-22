@@ -67,6 +67,10 @@ uint16_t get_fs_reboots() {
     }
 }
 
+/*
+ * Increments the value from get_fs_reboots and then writes it as two bytes
+ * to serverdata.
+ */
 void increment_fs_reboots() {
     uint16_t totalreboots = get_fs_reboots();
     if (totalreboots == -1) {
