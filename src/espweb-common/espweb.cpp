@@ -47,6 +47,10 @@ uint32_t* get_uptime() {
     return uptime;
 }
 
+/*
+ * Reads the first two bytes of serverdata.bin and assembles a 16 bit
+ * integer from them which is then returned as the number of reboots value.
+ */
 uint16_t get_fs_reboots() {
     File serverdat = SPIFFS.open("/serverdata.bin", "r");
     if (!serverdat) {
@@ -61,6 +65,23 @@ uint16_t get_fs_reboots() {
         long val = strtol(dat, &converted, 10);*/
         return (uint16_t) val;
     }
+}
+
+void increment_fs_reboots() {
+    uint16_t totalreboots = get_fs_reboots();
+    if (totalreboots == -1) {
+        return;
+    }
+    uint16_t inc = totalreboots + 1;
+    uint8_t bytes[2] = { (inc >> 8) & 0xFF, inc & 0xFF };
+
+    File serverdat = SPIFFS.open("/serverdata.bin", "w");
+    if (!serverdat) {
+        serverdat.close();
+        return;
+    }
+    serverdat.write(bytes, sizeof(byte));
+    serverdat.close();
 }
 
 void log_request(AsyncWebServerRequest* request, const char* file) {
