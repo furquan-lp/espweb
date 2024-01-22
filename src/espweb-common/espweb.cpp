@@ -3,16 +3,15 @@
 #if defined(ESP32)
 const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
-    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
-    "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.9.2-esp32\"}";
+    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\","
+    "\"reboots\":\"%d\",\"cpu\":\"160MHz\",\"flash\":\"4MB (1MB reserved"
+    " for SPI Flash File System)\",\"version\":\"0.9.6-esp32\"}";
 bool invert_led = false;
 #else
 const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
-    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
-    "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.9.2-nodemcu\"}";
+    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\","
+    "\"reboots\":\"%d\",\"cpu\":\"80MHz\",\"flash\":\"4MB (1MB reserved for"    " SPI Flash File System)\",\"version\":\"0.9.6-nodemcu\"}";
 bool invert_led = true;
 #endif
 bool led_toggled = false;
@@ -25,7 +24,7 @@ uint8_t server_led_pin = LED_BUILTIN;
 #endif
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
-                      150];
+                      170];
 
 /**
  * Returns an array of unsigned 32 bit integers containing the uptime in
@@ -45,6 +44,47 @@ uint32_t* get_uptime() {
     snprintf(buf, 20, "%d:%d:%d", hours, minutes, seconds);
     return buf;*/
     return uptime;
+}
+
+/*
+ * Reads the first two bytes of serverdata.bin and assembles a 16 bit
+ * integer from them which is then returned as the number of reboots value.
+ */
+uint16_t get_fs_reboots() {
+    File serverdat = SPIFFS.open("/serverdata.bin", "r");
+    if (!serverdat) {
+        serverdat.close();
+        return -1;
+    } else {
+        uint8_t b1 = serverdat.read();
+        uint8_t b2 = serverdat.read();
+        serverdat.close();
+        uint16_t val = (b1 << 8) + b2;
+        /*char* converted;
+        long val = strtol(dat, &converted, 10);*/
+        return val;
+    }
+}
+
+/*
+ * Increments the value from get_fs_reboots and then writes it as two bytes
+ * to serverdata.
+ */
+void increment_fs_reboots() {
+    uint16_t totalreboots = get_fs_reboots();
+    if (totalreboots == -1) {
+        return;
+    }
+    uint16_t inc = totalreboots + 1;
+    uint8_t bytes[2] = { (inc >> 8) & 0xFF, inc & 0xFF };
+
+    File serverdat = SPIFFS.open("/serverdata.bin", "w");
+    if (!serverdat) {
+        serverdat.close();
+        return;
+    }
+    serverdat.write(bytes, sizeof(bytes));
+    serverdat.close();
 }
 
 void log_request(AsyncWebServerRequest* request, const char* file) {
@@ -113,10 +153,11 @@ void handle_webserver_json(AsyncWebServerRequest* request) {
 void update_server_json_data(const char* ipaddr, uint32_t free_heap,
                              int32_t wifi_rssi) {
     uint32_t* up = get_uptime();
+    uint16_t reboots = get_fs_reboots();
     snprintf(server_json_data,
              sizeof(server_json_data) / sizeof(server_json_data[0]),
              server_json_template, up[0], up[1], up[2], up[3], ipaddr,
-             free_heap, wifi_rssi);
+             free_heap, wifi_rssi, reboots);
     free(up);
 }
 

@@ -1,4 +1,4 @@
-ARDUINO_CLI	= ../arduino-cli_0.31.0_Linux_64bit/arduino-cli
+ARDUINO_CLI	= ../arduino-cli_0.35.1_Linux_64bit/arduino-cli
 ESPTOOL	= esptool
 SPIFFS_TOOL	= python3 spiffsgen.py
 SPIFFS_TOOL_FLAGS	= --page-size 256 --block-size 8192 --no-magic-len --aligned-obj-ix-tables --meta-len=0 0xFA000
@@ -9,8 +9,8 @@ PORT_ESP32	= /dev/ttyUSB0
 PORT_ESP8266	= /dev/ttyACM0
 SOURCE_ESP32	= src/esp32
 SOURCE_ESP8266	= src/esp8266
-SOURCE_LIBRARIES	= lib
-SOURCE_SPIFFS	= src/web
+SOURCE_LIBRARIES	= src
+SOURCE_SPIFFS	= src/spiffs
 BUILD_ESP8266	= esp8266-build/esp8266.ino.bin
 BUILD_SPIFFS	= spiffs.bin
 
