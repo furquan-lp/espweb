@@ -27,6 +27,8 @@ void setup() {
 
     if (!SPIFFS.begin()) {
         Serial.println("An Error has occurred while mounting SPIFFS");
+    } else {
+        increment_fs_reboots();
     }
 
     if (MDNS.begin(esp8266_mdns_url)) {
