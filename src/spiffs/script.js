@@ -63,6 +63,7 @@ const updateData = (data) => {
     setInnerHTML(document.getElementById("cpu"), data.cpu);
     setInnerHTML(document.getElementById("flash"), data.flash);
     setInnerHTML(document.getElementById("version"), data.version);
+    setInnerHTML(document.getElementById("reboots"), data.reboots);
   }
 }
 
