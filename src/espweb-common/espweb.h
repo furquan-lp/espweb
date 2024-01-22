@@ -16,6 +16,6 @@ void update_server_json_data(const char* ipaddr, uint32_t free_heap,
                              int32_t wifi_rssi);
 void blink_led(uint8_t led_pin);
 void toggle_led(uint8_t led_pin);
-uint16_t get_fs_reboots(void);
+void increment_fs_reboots();
 
 #endif
