@@ -3,16 +3,15 @@
 #if defined(ESP32)
 const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
-    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
-    "\"160MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.9.2-esp32\"}";
+    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\","
+    "\"reboots\":\"%d\",\"cpu\":\"160MHz\",\"flash\":\"4MB (1MB reserved"
+    " for SPI Flash File System)\",\"version\":\"0.9.2-esp32\"}";
 bool invert_led = false;
 #else
 const PROGMEM char server_json_template[] =
     "{\"uptime_s\":\"%d\",\"uptime_m\":\"%d\",\"uptime_h\":\"%d\",\"uptime_d\":"
-    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\",\"cpu\":"
-    "\"80MHz\",\"flash\":\"4MB (1MB reserved for SPI Flash File "
-    "System)\",\"version\":\"0.9.2-nodemcu\"}";
+    "\"%d\",\"ipaddr\":\"%s\",\"free_heap\":\"%d\",\"rssi\":\"%d\","
+    "\"reboots\":\"%d\",\"cpu\":\"80MHz\",\"flash\":\"4MB (1MB reserved for"    " SPI Flash File System)\",\"version\":\"0.9.2-nodemcu\"}";
 bool invert_led = true;
 #endif
 bool led_toggled = false;
@@ -25,7 +24,7 @@ uint8_t server_led_pin = LED_BUILTIN;
 #endif
 char server_json_data[sizeof(server_json_template) /
                           sizeof(server_json_template[0]) +
-                      150];
+                      170];
 
 /**
  * Returns an array of unsigned 32 bit integers containing the uptime in
@@ -63,7 +62,7 @@ uint16_t get_fs_reboots() {
         uint16_t val = (b1 << 8) + b2;
         /*char* converted;
         long val = strtol(dat, &converted, 10);*/
-        return (uint16_t) val;
+        return val;
     }
 }
 
@@ -84,7 +83,7 @@ void increment_fs_reboots() {
         serverdat.close();
         return;
     }
-    serverdat.write(bytes, sizeof(byte));
+    serverdat.write(bytes, sizeof(bytes));
     serverdat.close();
 }
 
@@ -154,10 +153,11 @@ void handle_webserver_json(AsyncWebServerRequest* request) {
 void update_server_json_data(const char* ipaddr, uint32_t free_heap,
                              int32_t wifi_rssi) {
     uint32_t* up = get_uptime();
+    uint16_t reboots = get_fs_reboots();
     snprintf(server_json_data,
              sizeof(server_json_data) / sizeof(server_json_data[0]),
              server_json_template, up[0], up[1], up[2], up[3], ipaddr,
-             free_heap, wifi_rssi);
+             free_heap, wifi_rssi, reboots);
     free(up);
 }
 
